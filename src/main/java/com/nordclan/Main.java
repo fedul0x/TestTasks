@@ -5,6 +5,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.LinkedHashMap;
+import java.util.HashMap;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -12,9 +13,15 @@ import java.util.stream.Stream;
 
 public class Main {
     private static final List<Integer> CACHE = new ArrayList<>();
+    private static final Map<Integer, String> REPLACEMENTS = new HashMap<>();
 
     static {
         CACHE.add(1);
+    }
+
+    static {
+        REPLACEMENTS.put(2, "two");
+        REPLACEMENTS.put(7, "seven");
     }
 
     /**
@@ -30,22 +37,16 @@ public class Main {
             throw new IllegalArgumentException("Limit must be greater than or equal to 2");
         }
         // рассматривается только четный диапазон
-        return IntStream.range(1, limit / 2 + 1).map(x -> x * 2)
+        return IntStream.range(1, limit)
                 .mapToObj((i) -> {
-                    // каждое значение формирует пару из текущего четного и
-                    StringBuilder sb = new StringBuilder();
-                    if ((i - 1) % 7 == 0) {
-                        sb.append("Seven");
-                    } else {
-                        sb.append(i - 1);
+                    String s = REPLACEMENTS.keySet().stream()
+                            .filter(j -> i % j == 0)
+                            .map(REPLACEMENTS::get)
+                            .collect(Collectors.joining());
+                    if (s == null || s.isEmpty()) {
+                        return String.valueOf(i);
                     }
-                    // предыдущего нечетного
-                    if (i % 7 == 0) {
-                        sb.append(" Twoseven");
-                    } else {
-                        sb.append(" Two");
-                    }
-                    return sb.toString();
+                    return s;
                 }).collect(Collectors.joining(" "));
     }
 
