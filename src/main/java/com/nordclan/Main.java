@@ -62,6 +62,12 @@ public class Main {
         return CACHE.get(m) / CACHE.get(r) / CACHE.get(m - r);
     }
 
+    /**
+     * Метод рассчитывает частоту вхождения слов в заданную строку.
+     *
+     * @param text исходный литературный текст
+     * @return упорядоченый по частоте набор количество слов - слово
+     */
     private static Map<String, Long> wordCounter(String text) {
         Map<String, Long> words = Stream.of(text.toLowerCase()
                 .replaceAll("[,\\.]", "").split("\\s"))
