@@ -56,7 +56,7 @@ public class Main {
      * @param r количество элементов в одном сочетании
      * @return значение количества сочетаний
      */
-    private static Integer combinations(Integer r, Integer m) {
+    private static int combinations(Integer r, Integer m) {
         if ((r < 0) || (m < 0) || r > m) {
             throw new IllegalArgumentException("Params r and m must be positive and r <= m");
         }
