@@ -1,8 +1,6 @@
 package com.nordclan;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -68,7 +66,10 @@ public class Main {
         Map<String, Long> words = Stream.of(text.toLowerCase()
                 .replaceAll("[,\\.]", "").split("\\s"))
                 .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
-        return words.entrySet().stream().collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+        Map<String, Long> w = words.entrySet().stream()
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+        return w.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (o1, o2) -> o1, TreeMap::new));
     }
 
     public static void main(String[] args) {
