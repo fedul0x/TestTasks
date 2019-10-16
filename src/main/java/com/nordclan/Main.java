@@ -12,7 +12,15 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class Main {
+
+    /**
+     * Кэш для значений факториала
+     */
     private static final List<Integer> CACHE = new ArrayList<>();
+
+    /**
+     * Словарь заменяемых значений
+     */
     private static final Map<Integer, String> REPLACEMENTS = new HashMap<>();
 
     static {
@@ -25,7 +33,8 @@ public class Main {
     }
 
     /**
-     * Метод формирует строку, в которой записаны все числа из заданного диапазона
+     * Метод формирует строку, в которой записаны
+     * все числа из заданного диапазона
      * со следующими заменами: кратные 2 на "Two", кратные 7 на "Seven",
      * кратные 2 и 7 на "TwoSeven".
      *
@@ -88,9 +97,9 @@ public class Main {
     public static void main(String[] args) {
         System.out.println(getNumbers(100));
         System.out.println(combinations(3, 5));
-        String text = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. " +
-                "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when" +
-                " an unknown printer took a galley of type and scrambled it to make a type specimen" +
+        String text = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. "
+                + "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when"
+                + " an unknown printer took a galley of type and scrambleda it to make a type specimen" +
                 " book. It has survived not only five centuries, but also the leap into electronic " +
                 "typesetting, remaining essentially unchanged. It was popularised in the 1960s with" +
                 " the release of Letraset sheets containing Lorem Ipsum passages, and more recently" +
