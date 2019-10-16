@@ -36,7 +36,7 @@ public class Main {
         if (limit < 2) {
             throw new IllegalArgumentException("Limit must be greater than or equal to 2");
         }
-        return IntStream.range(1, limit)
+        return IntStream.range(1, limit + 1)
                 .mapToObj((i) -> {
                     String s = REPLACEMENTS.keySet().stream()
                             .filter(j -> i % j == 0)
