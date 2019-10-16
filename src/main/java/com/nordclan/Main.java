@@ -24,6 +24,8 @@ public class Main {
      * @return возвращает строку с заменами
      */
     private static String getNumbers(Integer limit) {
+        if (limit < 2)
+            throw new IllegalArgumentException("Limit must be greater than or equal to 2");
         // рассматривается только четный диапазон
         return IntStream.range(1, limit / 2 + 1).map(x -> x * 2)
                 .mapToObj((i) -> {
