@@ -10,18 +10,36 @@ import java.util.stream.Stream;
 
 public class Main {
     private static List<Integer> image = new ArrayList<>();
+
     static {
         image.add(1);
     }
 
+    /**
+     * Метод формирует строку, в которой записаны все числа из заданного диапазона
+     * со следующими заменами: кратные 2 на "Two", кратные 7 на "Seven",
+     * кратные 2 и 7 на "TwoSeven".
+     *
+     * @param limit ограничение диапазона справа
+     * @return возвращает строку с заменами
+     */
     private static String getNumbers(Integer limit) {
+        // рассматривается только четный диапазон
         return IntStream.range(1, limit / 2 + 1).map(x -> x * 2)
                 .mapToObj((i) -> {
+                    // каждое значение формирует пару из текущего четного и
                     StringBuilder sb = new StringBuilder();
-                    if ((i - 1) % 7 == 0) sb.append("seven");
-                    else sb.append(i - 1);
-                    if (i > 13 && (i % 7 == 0)) sb.append(" twoseven");
-                    else sb.append(" two");
+                    if ((i - 1) % 7 == 0) {
+                        sb.append("seven");
+                    } else {
+                        sb.append(i - 1);
+                    }
+                    // предыдущего нечетного
+                    if (i % 7 == 0) {
+                        sb.append(" twoseven");
+                    } else {
+                        sb.append(" two");
+                    }
                     return sb.toString();
                 }).collect(Collectors.joining(" "));
     }
