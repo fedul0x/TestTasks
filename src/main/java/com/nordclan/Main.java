@@ -73,6 +73,9 @@ public class Main {
      * @return упорядоченый по частоте набор количество слов - слово
      */
     private static Map<String, Long> wordCounter(String text) {
+        if (text == null || text.isEmpty()) {
+            throw new IllegalArgumentException("text must not be null or empty");
+        }
         Map<String, Long> words = Stream.of(text.toLowerCase()
                 .replaceAll("[,\\.]", "").split("\\s"))
                 .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
