@@ -9,10 +9,11 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class Main {
-    private static List<Integer> image = new ArrayList<>();
+    private static List<Integer> CACHE = new ArrayList<>();
 
     static {
-        image.add(1);
+        CACHE.add(1);
+        CACHE.add(1);
     }
 
     /**
@@ -46,16 +47,27 @@ public class Main {
                 }).collect(Collectors.joining(" "));
     }
 
+    /**
+     * Метод рассчитывает количество сочетаний из m по r.
+     *
+     * @param m количество элементов
+     * @param r количество элементов в одном сочетании
+     * @return значение колчиества сочетаний
+     */
     private static Integer combinations(Integer r, Integer m) {
-        if (image.size() < m) {
-            for (int i = image.size() - 1; i < m; i++) {
-                image.add(image.get(i) * (i + 2));
+        if ((r < 0) || (m < 0)) {
+            throw new IllegalArgumentException("Params r and m must be positive");
+        }
+        if (CACHE.size() < m + 1) {
+            for (int i = CACHE.size(); i < m + 1; i++) {
+                CACHE.add(CACHE.get(i - 1) * i);
             }
         }
+        System.out.println(CACHE);
         int d = 1;
-        if (m - r - 1 >= 0)
-            d = image.get(m - r - 1);
-        return Integer.valueOf(image.get(m - 1) / image.get(r - 1) / d);
+        if (m - r >= 0)
+            d = CACHE.get(m - r);
+        return Integer.valueOf(CACHE.get(m) / CACHE.get(r) / d);
     }
 
     private static Map<String, Long> wordCounter(String text) {
@@ -66,9 +78,12 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        System.out.println(getNumbers(100));
-        System.out.println(combinations(2, 4));
-        String text = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum";
-        System.out.print(wordCounter(text));
+//        System.out.println(getNumbers(100));
+        System.out.println(combinations(3, 5));
+//        System.out.println(combinations(2, 9));
+//        System.out.println(combinations(3, 3));
+//        System.out.println(combinations(0, -1));
+//        String text = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum";
+//        System.out.print(wordCounter(text));
     }
 }
