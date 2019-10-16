@@ -57,7 +57,7 @@ public class Main {
      * @return значение количества сочетаний
      */
     private static int combinations(Integer r, Integer m) {
-        if ((r < 0) || (m < 0) || r > m) {
+        if (r < 0 || m < 0 || r > m) {
             throw new IllegalArgumentException("Params r and m must be positive and r <= m");
         }
         for (int i = CACHE.size(); i <= m + 1; i++) {
