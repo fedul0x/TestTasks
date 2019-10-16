@@ -11,7 +11,7 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class Main {
-    private static List<Integer> CACHE = new ArrayList<>();
+    private static final List<Integer> CACHE = new ArrayList<>();
 
     static {
         CACHE.add(1);
