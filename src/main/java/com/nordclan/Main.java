@@ -31,15 +31,15 @@ public class Main {
                     // каждое значение формирует пару из текущего четного и
                     StringBuilder sb = new StringBuilder();
                     if ((i - 1) % 7 == 0) {
-                        sb.append("seven");
+                        sb.append("Seven");
                     } else {
                         sb.append(i - 1);
                     }
                     // предыдущего нечетного
                     if (i % 7 == 0) {
-                        sb.append(" twoseven");
+                        sb.append(" Twoseven");
                     } else {
-                        sb.append(" two");
+                        sb.append(" Two");
                     }
                     return sb.toString();
                 }).collect(Collectors.joining(" "));
