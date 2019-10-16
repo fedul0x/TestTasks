@@ -50,7 +50,7 @@ public class Main {
      *
      * @param m количество элементов
      * @param r количество элементов в одном сочетании
-     * @return значение колчиества сочетаний
+     * @return значение количества сочетаний
      */
     private static Integer combinations(Integer r, Integer m) {
         if ((r < 0) || (m < 0) || r > m) {
