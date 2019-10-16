@@ -79,9 +79,9 @@ public class Main {
         Map<String, Long> words = Stream.of(text.toLowerCase()
                 .replaceAll("[,\\.]", "").split("\\s"))
                 .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
-        Map<String, Long> w = words.entrySet().stream()
+        Map<String, Long> unsortedWords = words.entrySet().stream()
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-        return w.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+        return unsortedWords.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (o1, o2) -> o1, LinkedHashMap::new));
     }
 
