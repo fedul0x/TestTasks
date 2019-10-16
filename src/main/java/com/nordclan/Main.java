@@ -13,7 +13,6 @@ public class Main {
 
     static {
         CACHE.add(1);
-        CACHE.add(1);
     }
 
     /**
@@ -56,20 +55,13 @@ public class Main {
      * @return значение колчиества сочетаний
      */
     private static Integer combinations(Integer r, Integer m) {
-        if ((r < 0) || (m < 0)) {
-            throw new IllegalArgumentException("Params r and m must be positive");
+        if ((r < 0) || (m < 0) || r > m) {
+            throw new IllegalArgumentException("Params r and m must be positive and r <= m");
         }
-        if (CACHE.size() < m + 1) {
-            for (int i = CACHE.size(); i < m + 1; i++) {
-                CACHE.add(CACHE.get(i - 1) * i);
-            }
+        for (int i = CACHE.size(); i <= m + 1; i++) {
+            CACHE.add(CACHE.get(i - 1) * i);
         }
-        System.out.println(CACHE);
-        int d = 1;
-        if (m - r >= 0) {
-            d = CACHE.get(m - r);
-        }
-        return Integer.valueOf(CACHE.get(m) / CACHE.get(r) / d);
+        return CACHE.get(m) / CACHE.get(r) / CACHE.get(m - r);
     }
 
     private static Map<String, Long> wordCounter(String text) {
