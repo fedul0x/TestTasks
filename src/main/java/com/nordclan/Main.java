@@ -25,8 +25,9 @@ public class Main {
      * @return возвращает строку с заменами
      */
     private static String getNumbers(Integer limit) {
-        if (limit < 2)
+        if (limit < 2) {
             throw new IllegalArgumentException("Limit must be greater than or equal to 2");
+        }
         // рассматривается только четный диапазон
         return IntStream.range(1, limit / 2 + 1).map(x -> x * 2)
                 .mapToObj((i) -> {
@@ -65,8 +66,9 @@ public class Main {
         }
         System.out.println(CACHE);
         int d = 1;
-        if (m - r >= 0)
+        if (m - r >= 0) {
             d = CACHE.get(m - r);
+        }
         return Integer.valueOf(CACHE.get(m) / CACHE.get(r) / d);
     }
 
